@@ -1,0 +1,58 @@
+$a: 'Bebas Neue', cursive;
+$b: 'Comfortaa', cursive;
+$c: 'Lobster', cursive;
+$d: 'Poppins', sans-serif;
+$e: 'Sansita Swashed', cursive;
+
+header {
+	height: max(15em, 15vh);
+
+	.container {
+		height: 100%;
+		padding: 1em 0;
+		border-bottom: solid;
+		border-radius: 0 0 1em 1em;
+		box-shadow: 0 0.2em 0.4em #333;
+		backdrop-filter: saturate(140%);
+	}
+
+	.heading {
+		font-family: $c;
+		text-align: center;
+		color: #3a86ff;
+		text-shadow: 0.1em 0.1em 0.1em #fff;
+	}
+
+	.creation {
+		display: flex;
+		margin-top: 2.5em;
+		align-items: center;
+		justify-content: space-around;
+
+		.task-in {
+			width: 70%;
+			padding: 0.5em;
+			border: solid #ff0a54;
+			color: #3a86ff;
+			font-size: 0.9em;
+			font-family: $d;
+			border-radius: 1em;
+			box-shadow: -0.1em 0.2em 0.3em #ff477e;
+		}
+
+		.btn-add {
+			width: 15%;
+			padding: 1em 0;
+			border-radius: 1em;
+			font-family: $e;
+			color: #fff;
+			border: solid #ff0a54;
+			background-color: #ff0a5466;
+			backdrop-filter: blur(1em) saturate(180%);
+			box-shadow: 0.1em 0.2em 0.3em #ff477e;
+			&:focus {
+				border: solid #fff;
+			}
+		}
+	}
+}

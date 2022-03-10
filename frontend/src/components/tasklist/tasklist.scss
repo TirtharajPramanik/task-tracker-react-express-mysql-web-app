@@ -1,0 +1,29 @@
+$a: 'Bebas Neue', cursive;
+$b: 'Comfortaa', cursive;
+$c: 'Lobster', cursive;
+$d: 'Poppins', sans-serif;
+$e: 'Sansita Swashed', cursive;
+
+main {
+	margin-top: 2em;
+
+	.task-list {
+		min-height: 90vh;
+		font-family: $b;
+		border-inline: solid;
+		padding: 0.5em;
+		box-shadow: 0 0 0.4em 0.1em #666;
+		border-radius: 1em 1em 0 0;
+		position: relative;
+	}
+
+	.task-list::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		backdrop-filter: saturate(140%);
+	}
+}

@@ -1,0 +1,31 @@
+.task-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5em;
+	margin: 1em auto;
+	border: 1px solid #f8edeb;
+	border-radius: 1em;
+	line-height: 1.3em;
+	color: #fff;
+	backdrop-filter: blur(1em) saturate(160%);
+	background-color: transparent;
+
+	.task-text {
+		max-inline-size: 90%;
+		word-wrap: break-word;
+	}
+
+	.btns {
+		height: 100%;
+		margin-left: 0.5em;
+		color: #c200fb;
+		display: flex;
+		flex-direction: column;
+		font-size: 1.2rem;
+
+		.btn-edit {
+			margin-bottom: 0.3em;
+		}
+	}
+}
