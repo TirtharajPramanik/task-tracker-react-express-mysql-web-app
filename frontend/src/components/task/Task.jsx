@@ -6,18 +6,27 @@ import { MdDeleteSweep } from 'react-icons/md';
 import { TaskTrackerContext } from '../../context/TaskTrackerContext';
 
 const Task = ({ task }) => {
-	const { getTasks } = React.useContext(TaskTrackerContext);
+	const { getTasks, findTask } = React.useContext(TaskTrackerContext);
 
 	return (
 		<li className='task-item' key={task.id}>
 			<p className='task-text'>{task.task}</p>
 			<div className='btns'>
-				<RiEdit2Fill className='btn-edit' />
+				<RiEdit2Fill
+					className='btn-edit'
+					onClick={async () => {
+						await findTask(task.id);
+					}}
+				/>
 				<MdDeleteSweep
 					className='btn-dlt'
 					onClick={async () => {
-						await axios.delete(`tasks/${task.id}`);
-						await getTasks();
+						try {
+							await axios.delete(`tasks/${task.id}`);
+							await getTasks();
+						} catch (error) {
+							console.log(error);
+						}
 					}}
 				/>
 			</div>

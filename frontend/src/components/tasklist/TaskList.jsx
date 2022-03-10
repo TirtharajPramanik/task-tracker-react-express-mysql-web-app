@@ -8,11 +8,15 @@ const TaskList = () => {
 	return (
 		<main>
 			<div className='container'>
-				<ul className='task-list'>
-					{tasks.map((task, id) => (
-						<Task task={task} key={id} />
-					))}
-				</ul>
+				{tasks.length ? (
+					<ul className='task-list'>
+						{tasks.map((task, id) => (
+							<Task task={task} key={id} />
+						))}
+					</ul>
+				) : (
+					<h1 className='no-task'>No Tasks Yet!</h1>
+				)}
 			</div>
 		</main>
 	);

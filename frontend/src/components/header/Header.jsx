@@ -5,8 +5,17 @@ import { TaskTrackerContext } from '../../context/TaskTrackerContext';
 
 const Header = () => {
 	const taskIn = React.useRef(null);
+	const addBtn = React.useRef(null);
 	const [task, setTask] = React.useState({ task: '' });
-	const { getTasks } = React.useContext(TaskTrackerContext);
+	const { getTasks, editItem, editTask } = React.useContext(TaskTrackerContext);
+
+	React.useEffect(() => {
+		if (editItem.item) {
+			taskIn.current.value = editItem.item.task;
+			setTask({ task: taskIn.current.value });
+		}
+	}, [editItem]);
+
 	return (
 		<header>
 			<div className='container'>
@@ -25,13 +34,23 @@ const Header = () => {
 					/>
 					<button
 						className='btn-add'
+						ref={addBtn}
+						value='Add'
 						onClick={async () => {
-							await axios.post('tasks', task);
+							if (editItem.item) {
+								await editTask(task.task);
+							} else if (taskIn.current.value) {
+								try {
+									await axios.post('tasks', task);
+								} catch (error) {
+									console.log(error);
+								}
+							}
 							await getTasks();
 							taskIn.current.value = '';
 							setTask({ task: taskIn.current.value });
 						}}>
-						Add
+						{editItem.item ? 'Edit' : 'Add'}
 					</button>
 				</div>
 			</div>

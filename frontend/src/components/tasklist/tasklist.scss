@@ -7,6 +7,10 @@ $e: 'Sansita Swashed', cursive;
 main {
 	margin-top: 2em;
 
+	.no-task {
+		color: #fff;
+	}
+
 	.task-list {
 		min-height: 90vh;
 		font-family: $b;

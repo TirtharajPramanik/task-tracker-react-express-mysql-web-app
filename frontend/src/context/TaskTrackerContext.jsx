@@ -5,6 +5,7 @@ export const TaskTrackerContext = React.createContext();
 
 const TaskTrackerContextProvider = (props) => {
 	const [tasks, setTasks] = React.useState([]);
+	const [editItem, setEditItem] = React.useState({});
 	async function getTasks() {
 		try {
 			const res = await axios.get('tasks');
@@ -15,12 +16,31 @@ const TaskTrackerContextProvider = (props) => {
 		}
 	}
 
+	async function findTask(id) {
+		const item = await tasks.find((task) => task.id === id);
+		setEditItem({ item });
+	}
+
+	async function editTask(updatedTask) {
+		if (updatedTask) {
+			try {
+				await axios.put(`tasks/${editItem.item.id}`, {
+					task: `${updatedTask}`,
+				});
+				setEditItem({});
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	}
+
 	React.useEffect(() => {
 		getTasks();
 	}, []);
 
 	return (
-		<TaskTrackerContext.Provider value={{ tasks, getTasks }}>
+		<TaskTrackerContext.Provider
+			value={{ tasks, getTasks, findTask, editItem, editTask }}>
 			{props.children}
 		</TaskTrackerContext.Provider>
 	);
